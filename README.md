@@ -28,3 +28,16 @@
 * Write blog(s)
   * decide where the blog belongs
 * Polish git repo
+
+
+## Things we've accomplished
+
+### September 5th
+* created a github repo
+* developed project plan
+* listed backlog items
+* renamed .ipynb notebook
+
+TODO:
+* First iteration of model improvement
+ * one round of ranking
