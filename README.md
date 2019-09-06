@@ -41,5 +41,6 @@
 * renamed .ipynb notebook
 
 TODO:
+* Create docker image
 * First iteration of model improvement
  * one round of ranking
