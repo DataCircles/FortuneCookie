@@ -8,17 +8,19 @@
   * Param Training
   * Data collection/refine trainset
   * Rank results / see improvement in the model
-  
+
+## Infrastructure
+
+* Create a docker image/docker compose
+* Continuous Integration
+* Continuous Deployment
 
 ## App
 
 * Render model results as plain text on an html page
 * Build flask prototype
-* Infrastructure
-  * Continuous Integration
-  * Continuous Deployment
-  * Get a domain
-  * Website-to-model 
+* Get a domain
+* Website-to-model 
 * Feedback from within UI
 
 
