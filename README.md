@@ -40,7 +40,10 @@
 * listed backlog items
 * renamed .ipynb notebook
 
+### September 12th
+* Created docker image and a docker-compose file
+
 TODO:
-* Create docker image
+* Do a quick recap of our code
 * First iteration of model improvement
  * one round of ranking
