@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+
+  fortune_cookie:
+    build: ./
+    volumes:
+      - ./:/home/jovyan
+    stdin_open: true
+    tty: true
+    ports:
+      - "8888:8888"
