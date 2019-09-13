@@ -39,3 +39,9 @@ docker run -p 8888:8888 test:test pwd
 # run docker image
 docker-compose up
 ```
+
+Some useful links:
+
+https://container.training/intro-selfpaced.yml.html#1
+https://medium.com/faun/the-missing-introduction-to-containerization-de1fbb73efc5
+https://dev.to/azure/docker---from-the-beginning-part-i-28c6
