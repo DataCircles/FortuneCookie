@@ -1,5 +1,9 @@
 # FortuneCookies
 
+## Run the Model
+
+* `docker-compose up`
+
 ## Machine Learning
 
 * Refamiliarize ourselves with our current code
