@@ -47,6 +47,14 @@
 ### September 12th
 * Created docker image and a docker-compose file
 
+### September 26th
+
+Things we talked about:
+• Adding a metric to the results of the output of the model.
+• We attempted to save our model as a static file for use later. We ran into issues in using different versions of keras.
+
+We cleaned some data, and did a git commit to show those changes in the repo. We retrained our model on our newly cleaned data.
+
 TODO:
 * Do a quick recap of our code
 * First iteration of model improvement
