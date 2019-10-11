@@ -59,3 +59,21 @@ TODO:
 * Do a quick recap of our code
 * First iteration of model improvement
  * one round of ranking
+
+### Oct 10th
+
+Things we've done:
+* Went through fortunie cookie ipython notebook
+* Figured out the tokenizer 
+  * tokenizer: strips out the punctuations
+  * padding: addes 0's to the beginning of the sentences
+
+To-do:
+- Update ipython notebook to the new data.csv
+- Some research to improve the model preformance
+ - How to automatically stop a sentence
+ - How to bring back the puncatuation (end stopping word) back to the sentence
+ - How to fit the begin word smartly???
+- Update the kares version
+- Clean up the code and variable names 
+
