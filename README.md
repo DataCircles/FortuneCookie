@@ -77,3 +77,12 @@ To-do:
 - Update the kares version
 - Clean up the code and variable names 
 
+### Oct 17th
+
+Things we've done:
+- Tested the tensorflow character-level, turns out not work well.
+- Added word embedding (glove) to the fortune cookie model
+
+To-do:
+- finish the word embedding
+
