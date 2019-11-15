@@ -106,4 +106,16 @@ venv.bak/
 # OSx
 .DS_Store
 
+# ipython
+.local/
+.ipython/
+.jupyter
 
+#keras
+.keras
+
+#bash
+.bash_history
+
+# Our pretrained embedding layer
+glove.**
