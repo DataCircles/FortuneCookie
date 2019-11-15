@@ -34,7 +34,8 @@ corpus = fortune_cookie_df['Fortune Cookie Quotes']
 
 
 inp_sequences, total_words = get_sequence_of_tokens(corpus)
-predictors, label, max_sequence_len = generate_padded_sequences(inp_sequences, total_words)
+predictors, label, max_sequence_len = generate_padded_sequences(
+    inp_sequences, total_words)
 model = create_model(max_sequence_len, total_words)
 model.fit(predictors, label, epochs=1, verbose=5)
 
