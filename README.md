@@ -55,10 +55,17 @@ Things we talked about:
 
 We cleaned some data, and did a git commit to show those changes in the repo. We retrained our model on our newly cleaned data.
 
-TODO:
-* Do a quick recap of our code
-* First iteration of model improvement
- * one round of ranking
+### Nov 14th
+
+Move ipython notebook to a .py file, cleaned up the script. 
+
+To-do: 
+- make a python package
+- add flask
+
+### Nov 7th & Oct 30th
+
+Added word embedding as an additional layer.
 
 ### Oct 10th
 
