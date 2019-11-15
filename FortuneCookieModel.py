@@ -20,50 +20,17 @@ import pandas as pd
 import requests
 import os
 
-url = 'https://raw.githubusercontent.com/WomenInDataScience-Seattle/Machine_Learning_Projects/master/FortuneCookie/training_data/data.csv'
-s = requests.get(url).text
-
-c = pd.read_csv(StringIO(s))
-
 # random-word used to generate the first word in the sequence
 # TODO: don't pip install here. Do this in the docker build.
 os.system('pip install random-word')
 
-c.head(5)
-
+# TODO: Move this to `init.py`
+url = 'https://raw.githubusercontent.com/WomenInDataScience-Seattle/Machine_Learning_Projects/master/FortuneCookie/training_data/data.csv'
+s = requests.get(url).text
+c = pd.read_csv(StringIO(s))
+# Extract the column of csv data that we want.
 fortune_data = c['Fortune Cookie Quotes']
-
-fortune_data.head(5)
-
-fortune_data[1]
-
-
-fortune_data[36]
-
-
-cleaned_df = fortune_data.str.lower()
-cleaned_df2 = cleaned_df.str.strip()
-
-
-dropped = cleaned_df2.dropna()
-
-
-dropped.tail(5)
-
-
-cleaned_fortunes = dropped
-
-
-cleaned_fortunes.head(5)
-
-
-cleaned_fortunes[3]
-
-
-cleaned_fortunes[0]
-
-
-corpus = cleaned_fortunes
+corpus = fortune_data
 
 
 tokenizer = Tokenizer()
