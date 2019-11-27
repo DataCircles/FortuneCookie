@@ -7,6 +7,7 @@ __pycache__/
 *.so
 .idea/
 DS_store/
+flask/
 
 # Distribution / packaging
 .Python
