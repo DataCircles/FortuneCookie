@@ -5,6 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
+.idea/
+DS_store/
+flask/
 
 # Distribution / packaging
 .Python
