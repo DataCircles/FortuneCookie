@@ -8,6 +8,8 @@ __pycache__/
 .idea/
 DS_store/
 flask/
+models/
+checkpoint/
 
 # Distribution / packaging
 .Python
