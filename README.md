@@ -1,6 +1,6 @@
 # Fortune Cookie Generator
 
-### Prerequistes
+### Prerequisites
 
 * [docker](https://www.docker.com/products/docker)
 * [docker-compose](https://docs.docker.com/compose/)
