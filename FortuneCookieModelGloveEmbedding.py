@@ -18,7 +18,7 @@ import pandas as pd
 import requests
 import os
 
-from library.common import get_sequence_of_tokens, get_word_index, generate_embedding_matrix, generate_padded_sequences, create_model_glove_embedding, generate_text
+from library.common import get_sequence_of_tokens, generate_embeddings_index, get_word_index, generate_embedding_matrix, generate_padded_sequences, create_model_glove_embedding, generate_text
 # Glove embedding layer constants
 BASE_DIR = './training_data/'
 GLOVE_DIR = os.path.join(BASE_DIR, '')
@@ -32,15 +32,6 @@ MAX_NUM_WORDS = 20000
 # number of the dimensions for each word
 EMBEDDING_DIM = 100 #used to be 100
 VALIDATION_SPLIT = 0.2
-
-def generate_embeddings_index(GLOVE_DIR):
-    embeddings_index = {}
-    with open(os.path.join(GLOVE_DIR, 'glove.6B.100d.txt')) as f:
-        for line in f:
-            word, coefs = line.split(maxsplit=1)
-            coefs = np.fromstring(coefs, 'f', sep=' ')
-            embeddings_index[word] = coefs
-    return embeddings_index
 
 # When we go to add the embedding layer, use logic similar to the way this package does a pull of
 # it's embedding. https://github.com/minimaxir/gpt-2-simple/blob/master/README.md#usage
