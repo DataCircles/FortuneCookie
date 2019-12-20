@@ -6,9 +6,10 @@ from tensorflow.python.keras.layers import Dense, GRU, Embedding, LSTM, Dropout
 from tensorflow.python.keras.models import Sequential
 from scipy.spatial.distance import cdist
 import tensorflow as tf
-
+import os
 import numpy as np
-import pandas as pd
+import pandas as p
+
 
 tokenizer = Tokenizer()
 def get_sequence_of_tokens(corpus):
@@ -25,6 +26,34 @@ def get_sequence_of_tokens(corpus):
             input_sequences.append(n_gram_sequence)
     return input_sequences, total_words
 
+
+# return word index
+def get_word_index(corpus):
+    tokenizer = Tokenizer()
+    tokenizer.fit_on_texts(corpus)
+    return tokenizer.word_index
+
+# prepare embedding matrix
+def generate_embedding_matrix(total_words, word_index, MAX_NUM_WORDS, MAX_SEQUENCE_LENGTH, EMBEDDING_DIM, embeddings_index):
+    num_words = min(MAX_NUM_WORDS, total_words)
+    embedding_matrix = np.zeros((num_words, EMBEDDING_DIM))
+    for word, i in word_index.items():
+        if i >= MAX_NUM_WORDS:
+            continue
+        embedding_vector = embeddings_index.get(word)
+        if embedding_vector is not None:
+            # words not found in embedding index will be all-zeros.
+            embedding_matrix[i] = embedding_vector
+
+
+    embedding_layer = Embedding(total_words,
+                                EMBEDDING_DIM,
+                                weights=[embedding_matrix],
+                                input_length=MAX_SEQUENCE_LENGTH,
+                                trainable=False)
+    return embedding_layer
+
+
 def generate_padded_sequences(input_sequences, total_words):
     max_sequence_len = max([len(x) for x in input_sequences])
     input_sequences = np.array(pad_sequences(
@@ -40,6 +69,24 @@ def create_model(max_sequence_len, total_words):
 
     # Add Input Embedding Layer
     model.add(Embedding(total_words, 50, input_length=input_len))
+
+    # Add Hidden Layer 1 - LSTM Layer
+    model.add(GRU(100, activation='relu'))
+    model.add(Dropout(0.2))
+
+    # Add Output Layer
+    model.add(Dense(total_words, activation='softmax'))
+
+    model.compile(loss='categorical_crossentropy', optimizer='adam')
+
+    return model
+
+def create_model_glove_embedding(max_sequence_len, total_words,embedding_layer):
+    input_len = max_sequence_len - 1
+    model = Sequential()
+
+    # Add input embedding Layer
+    model.add(embedding_layer)
 
     # Add Hidden Layer 1 - LSTM Layer
     model.add(GRU(100, activation='relu'))
