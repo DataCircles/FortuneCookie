@@ -18,12 +18,12 @@ VALIDATION_SPLIT = 0.2
 
 # pre-processing for the model
 corpus = get_fortune_cookie_corpus()
-inp_sequences, total_words = get_sequence_of_tokens(corpus)
+input_sequences, total_words = get_sequence_of_tokens(corpus)
 word_index = get_word_index(corpus)
 embeddings_index = generate_embeddings_index(GLOVE_DIR)
 embedding_layer = generate_embedding_matrix(total_words, word_index, MAX_NUM_WORDS, MAX_SEQUENCE_LENGTH, EMBEDDING_DIM, embeddings_index)
 predictors, label, max_sequence_len = generate_padded_sequences(
-    inp_sequences, total_words)
+    input_sequences, total_words)
 
 # create model
 model = create_model_glove_embedding(max_sequence_len, total_words, embedding_layer)

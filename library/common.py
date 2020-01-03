@@ -13,14 +13,12 @@ import pandas as pd
 from io import StringIO
 
 
-
 source_csv = 'https://raw.githubusercontent.com/WomenInDataScience-Seattle/FortuneCookie/master/training_data/data.csv'
 
 def get_fortune_cookie_corpus(fortune_cookie_csv_url = source_csv):
     fortune_cookie_string = requests.get(fortune_cookie_csv_url).text
     fortune_cookie_df = pd.read_csv(StringIO(fortune_cookie_string))
     return fortune_cookie_df['Fortune Cookie Quotes']
-
 
 
 tokenizer = Tokenizer()
@@ -39,7 +37,6 @@ def get_sequence_of_tokens(corpus):
     return input_sequences, total_words
 
 
-# generate embeddings index
 def generate_embeddings_index(GLOVE_DIR):
     embeddings_index = {}
     with open(os.path.join(GLOVE_DIR, 'glove.6B.100d.txt')) as f:
@@ -56,6 +53,7 @@ def get_word_index(corpus):
     tokenizer.fit_on_texts(corpus)
     return tokenizer.word_index
 
+
 # prepare embedding matrix
 def generate_embedding_matrix(total_words, word_index, MAX_NUM_WORDS, MAX_SEQUENCE_LENGTH, EMBEDDING_DIM, embeddings_index):
     num_words = min(MAX_NUM_WORDS, total_words)
@@ -67,7 +65,6 @@ def generate_embedding_matrix(total_words, word_index, MAX_NUM_WORDS, MAX_SEQUEN
         if embedding_vector is not None:
             # words not found in embedding index will be all-zeros.
             embedding_matrix[i] = embedding_vector
-
 
     embedding_layer = Embedding(total_words,
                                 EMBEDDING_DIM,
@@ -86,6 +83,7 @@ def generate_padded_sequences(input_sequences, total_words):
     label = ku.to_categorical(label, num_classes=total_words)
     return predictors, label, max_sequence_len
 
+
 def create_model(max_sequence_len, total_words):
     input_len = max_sequence_len - 1
     model = Sequential()
@@ -99,10 +97,9 @@ def create_model(max_sequence_len, total_words):
 
     # Add Output Layer
     model.add(Dense(total_words, activation='softmax'))
-
     model.compile(loss='categorical_crossentropy', optimizer='adam')
-
     return model
+
 
 def create_model_glove_embedding(max_sequence_len, total_words,embedding_layer):
     input_len = max_sequence_len - 1
@@ -124,7 +121,6 @@ def create_model_glove_embedding(max_sequence_len, total_words,embedding_layer):
 
 # Drew inspiration from https://www.kaggle.com/shivamb/beginners-guide-to-text-generation-using-lstms
 # Tweaked generate text function that uses np.random.choice to sample of the probaility distribution of the predicted word
-
 def generate_text(seed_text, next_words, model, max_sequence_len):
     for _ in range(next_words):
         token_list = tokenizer.texts_to_sequences([seed_text])[0]
