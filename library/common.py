@@ -6,9 +6,21 @@ from tensorflow.python.keras.layers import Dense, GRU, Embedding, LSTM, Dropout
 from tensorflow.python.keras.models import Sequential
 from scipy.spatial.distance import cdist
 import tensorflow as tf
+import requests
 import os
 import numpy as np
-import pandas as p
+import pandas as pd
+from io import StringIO
+
+
+
+source_csv = 'https://raw.githubusercontent.com/WomenInDataScience-Seattle/FortuneCookie/master/training_data/data.csv'
+
+def get_fortune_cookie_corpus(fortune_cookie_csv_url = source_csv):
+    fortune_cookie_string = requests.get(fortune_cookie_csv_url).text
+    fortune_cookie_df = pd.read_csv(StringIO(fortune_cookie_string))
+    return fortune_cookie_df['Fortune Cookie Quotes']
+
 
 
 tokenizer = Tokenizer()
