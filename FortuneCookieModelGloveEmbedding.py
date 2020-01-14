@@ -29,10 +29,12 @@ predictors, label, max_sequence_len = generate_padded_sequences(
 model = create_model_glove_embedding(max_sequence_len, total_words, embedding_layer)
 
 # fit model
-model.fit(predictors, label, epochs=1, verbose=5)
+model.fit(predictors, label, epochs=100, verbose=5)
 
 
 # generate a fortune
-random_word = 'Dreams'
-text = generate_text(random_word, 7, model, max_sequence_len)
-print(text)
+random_words = ["Dream", "Be", "Who", "Fortune", "Eyes", "Heart"]
+
+for word in random_words:
+    text = generate_text(word, 7, model, max_sequence_len)
+    print(text)

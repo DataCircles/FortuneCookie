@@ -39,6 +39,9 @@ model = create_model(max_sequence_len, total_words)
 model.fit(predictors, label, epochs=1, verbose=5)
 
 
-random_word = 'Dreams'
-text = generate_text(random_word, 7, model, max_sequence_len)
-print(text)
+random_word = ["Dream", "Be", "Who", "Fortune", "Eyes", "Heart"]
+
+for word in random_words:
+    text = generate_text(word, 7, model, max_sequence_len)
+    print(text)
+
