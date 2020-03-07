@@ -1,5 +1,8 @@
 import gpt_2_simple as gpt2
 import tensorflow as tf
+import pandas as pd
+
+from library.common import _random_prefix
 
 gpt2.download_gpt2(model_name="124M")
 file_name = "training_data/data.txt"
@@ -35,11 +38,9 @@ def text_generator(model_name, prefix, temperature, **kwargs):
                          batch_size=5
                          )
 
-def _random_prefix():
-    """
-    prefix random generator
-    """
-    pass
+data = pd.read_csv(file_name)
+corpus = data['Fortune Cookie Quotes']
+start_word = _random_prefix(corpus)
 
 gpt2_finetune(data=file_name, steps=100, run_name='run1')
-text_generator(model_name='run1', prefix='Dream', temperature=1)
+text_generator(model_name='run1', prefix=start_word, temperature=1)

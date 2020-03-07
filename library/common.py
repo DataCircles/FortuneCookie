@@ -10,6 +10,7 @@ import requests
 import os
 import numpy as np
 import pandas as pd
+from random import choice
 from io import StringIO
 
 
@@ -20,7 +21,7 @@ def get_fortune_cookie_corpus(fortune_cookie_csv_url = source_csv):
     fortune_cookie_df = pd.read_csv(StringIO(fortune_cookie_string))
     return fortune_cookie_df['Fortune Cookie Quotes']
 
-
+ 
 tokenizer = Tokenizer()
 def get_sequence_of_tokens(corpus):
     # tokenization
@@ -136,3 +137,30 @@ def generate_text(seed_text, next_words, model, max_sequence_len):
                 break
         seed_text += " "+output_word
     return seed_text.title()
+
+
+def _random_prefix(sentences):
+    """
+    prefix random generator
+    input: list of input sentences
+    output: random word
+    """
+
+    words = _word_dict(sentences)
+    return choice(words)
+
+def _word_dict(sentences):
+    """
+    input: list of input sentences
+    output: unique list of the corpus
+    #to-do: strip out punctuation
+    """
+    result = []
+    for i in range(len(sentences)):
+        sen_list = set(sentences[i].split().lower())
+        for word in sen_list:
+            if word not in result:
+                result.append(word)
+            else:
+                pass
+    return result
