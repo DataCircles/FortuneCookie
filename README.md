@@ -24,7 +24,7 @@ Tokenization and padding were performed to this dataset. Data preprocessing func
 
 ### Model training
 
-Three models were trained: GRU, GRU with GLoVe embeddings, GPT-2. Check the `model/` for more details.
+Three models were trained: GRU, GRU with GLoVe embeddings, GPT-2. Check the `scripts/` for more details.
 
 ### Model Deployment
 
